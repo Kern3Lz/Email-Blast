@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 /* Google Font Import - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 * {
@@ -219,6 +223,19 @@ body.dark .sidebar li a:hover .text {
   color: var(--text-color);
 }
 
+.admin {
+  list-style: none;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: var(--tran-03);
+}
+
 .sidebar .menu-bar {
   height: calc(100% - 55px);
   display: flex;
@@ -321,4 +338,94 @@ body.dark .home .text {
 .navbar {
   margin-bottom: 50px;
   z-index: 101;
+}
+
+.max-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.draft {
+  padding: 7px 13px;
+  background-color: #ffc107;
+  max-width: 100px;
+  text-align: center;
+  border-radius: 5px;
+  color: black;
+  display: inline-block;
+}
+
+.terkirim {
+  padding: 7px 13px;
+  background-color: #198754;
+  max-width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+}
+
+.table td {
+  text-align: center;
+}
+
+.active {
+  background-color: #695cfe;
+  border-radius: 5px;
+}
+
+.active .icon {
+  color: white;
+}
+
+.active .nav-text {
+  color: white;
+}
+
+.layout {
+  display: flex;
+}
+
+.card-1 {
+  flex: 60%;
+}
+
+.card-1 h2 {
+  padding: 20px 20px 0 20px;
+  font-size: 3rem;
+}
+
+.card-1 p {
+  padding: 20px;
+  font-size: 1.5em;
+}
+
+.card-2 {
+  flex: 40%;
+}
+
+.ikan {
+  font-size: 3em;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.2rem;
+}
+
+.card-footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.card-kontak {
+  background-color: #17a2b8;
+}
+
+.card-footer a:hover {
+  color: white;
+}
+
+.card {
+  width: 300px;
 }

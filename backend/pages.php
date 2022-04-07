@@ -4,12 +4,11 @@
     $mysqli = mysqli_connect("localhost","root","","emailblast");
 
     include 'backend/koneksi.php';
-
-    if ($_GET['page']=='data_users') {
+    if ($_GET['page']=='users') {
         include "page/users/users.php";
     }
-    else if ($_GET['page']=='tambah_users') {
-        include "page/users/tambah_users.php";
+    else if ($_GET['page']=='tambahUsers') {
+        include "page/users/tambahUsers.php";
     }
     else if ($_GET['page']=='edit_users') {
         include "page/users/edit_users.php";
@@ -35,6 +34,18 @@
 
     else if ($_GET['page']=="ubahKontak") {
         include 'page/contacts/ubahKontak.php';
+    }
+
+    else if ($_GET['page']=="updateKontak") {
+        include 'page/contacts/updateKontak.php';
+    }
+
+    else if ($_GET['page']=="pesan") {
+        include 'page/pesan/pesan.php';
+    }
+
+    else if ($_GET['page']=="kirimPesan") {
+        include 'page/pesan/kirimPesan.php';
     }
 
 ?>
