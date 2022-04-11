@@ -1,5 +1,7 @@
 <?php 
   include 'backend/koneksi.php';
+  
+  
 ?>
 
     <meta charset="UTF-8">
@@ -18,26 +20,27 @@
 <body>
     
         <div class="text">Dashboard Sidebar</div>
-        <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
   
+
   <!-- Modal Tambah Kontak-->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Tambah Kontak</h5>
+          <h5 class="modal-title" id="myModalLabel">Tambah Kontak</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="index.php?page=tambahKontak" method="post">
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
               </div>
     
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
               </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Tambah</button>
@@ -47,9 +50,6 @@
       </div>
     </div>
   </div>
-
-  
-
 
       <table class="table table-striped">
         <thead>
@@ -63,7 +63,7 @@
         <br><br>
         <tbody>
         <?php 
-            
+
             $no = 0;
             $show = $mysqli->query("SELECT * FROM contacts");
             while ($c = mysqli_fetch_array($show)) {
@@ -75,7 +75,7 @@
             <td><?php echo $c['email']; ?></td>
             <td>
                 <a href="index.php?page=ubahKontak&no=<?php echo $c['contactID'];?>">
-                    <button class="btn btn-warning btn-sm" role="button" data-bs-toggle="modal" role="button" data-bs-target="#ubahKontak"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
+                    <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
                 </a>
                 <a href="index.php?page=hapusKontak&no=<?php echo $c['contactID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
                     <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button>
@@ -87,5 +87,14 @@
         </tbody>
       </table>
 
+      <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+})
+      </script>
+      
 </body>
 </html>

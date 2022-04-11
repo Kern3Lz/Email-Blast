@@ -31,22 +31,20 @@
           <form action="index.php?page=tambahUsers" method="post">
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
               </div>
     
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
               </div>
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Level</label>
-                  <select name="level" id="exampleInputEmail1" class="form-select">
-                        <option selected="">Pilih Level</option>
-						<?php $show = $mysqli->query("SELECT * FROM users"); ?>
-						<?php foreach( $show as $row ) : ?>
-							<option value="<?= $row["level"]; ?>"><?= $row["level"]; ?></option>
-						<?php endforeach; ?>
-					</select>
+                  <!-- make select 2 option php enum -->
+                  <select name="level" class="form-control">
+                      <option value="SuperAdmin">Super Admin</option>
+                      <option value="Admin">Admin</option>
+                  </select>
               </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Tambah</button>

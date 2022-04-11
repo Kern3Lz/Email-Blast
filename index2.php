@@ -1,4 +1,4 @@
-<!-- HALAMAN INDEX UNTUK SUPER ADMIN -->
+<!-- HALAMAN INDEX UNTUK ADMIN -->
 <?php 
   include 'backend/koneksi.php';
 
@@ -14,7 +14,7 @@
 ?>
 
 <?php 
-    include 'page/HF/header.php';
+    include 'page/HF/header2.php';
 ?>
 
 

@@ -1,5 +1,5 @@
 <?php 
-    error_reporting( error_reporting() & ~E_NOTICE );
+    // error_reporting( error_reporting() & ~E_NOTICE );
 
     $mysqli = mysqli_connect("localhost","root","","emailblast");
 
@@ -10,15 +10,17 @@
     else if ($_GET['page']=='tambahUsers') {
         include "page/users/tambahUsers.php";
     }
-    else if ($_GET['page']=='edit_users') {
-        include "page/users/edit_users.php";
+    else if ($_GET['page']=='ubahUsers') {
+        include "page/users/ubahUsers.php";
     }
-    else if ($_GET['page']=='update_user') {
-        include "page/users/update_users.php";
+    else if ($_GET['page']=='updateUsers') {
+        include "page/users/updateUsers.php";
     }
-    else if ($_GET['page']=='delete_user') {
-        include "page/users/delete_users.php";
+    else if ($_GET['page']=='hapusUsers') {
+        include "page/users/hapusUsers.php";
     }
+
+
 
     else if ($_GET['page']=="contacts") {
         include "page/contacts/contacts.php";
@@ -40,6 +42,8 @@
         include 'page/contacts/updateKontak.php';
     }
 
+
+    
     else if ($_GET['page']=="pesan") {
         include 'page/pesan/pesan.php';
     }
@@ -47,5 +51,19 @@
     else if ($_GET['page']=="kirimPesan") {
         include 'page/pesan/kirimPesan.php';
     }
+
+    else if ($_GET['page']=="hapusPesan") {
+        include 'page/pesan/hapusPesan.php';
+    }
+
+    else if ($_GET['page']=="ubahPesan") {
+        include 'page/pesan/ubahPesan.php';
+    }
+
+    else if ($_GET['page']=="updatePesan") {
+        include 'page/pesan/updatePesan.php';
+    }
+
+
 
 ?>

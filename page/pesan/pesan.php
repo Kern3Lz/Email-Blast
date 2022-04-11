@@ -6,7 +6,7 @@
       <table class="table table-striped">
         <thead>
           <tr style="text-align: center;">
-            <th scope="col">ID</th>
+            <th scope="col">No</th>
             <th scope="col">Admin</th>
             <th scope="col">Nama Kontak</th>
             <th scope="col">Pesan</th>

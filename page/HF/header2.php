@@ -1,4 +1,4 @@
-<!-- FILE UNTUK NAVBAR LEVEL SUPER ADMIN -->
+<!-- FILE UNTUK NAVBAR LEVEL ADMIN -->
 <?php 
     include 'backend/koneksi.php';
 ?>
@@ -55,44 +55,33 @@
 
                 <li class="nav-link1">
                     <i class="fa-solid fa-circle-user icon"></i>
-                    <span class="text nav-text"><?php echo $id_nama;?> <br> <?php echo $id_status?></span>
+                    <span class="text nav-text"><?php echo $id_nama;?> - <?php echo $id_status?></span>
                 </li>
-
-                <div class="pemisah">
-                    <br><br>
-                </div>
 
                 <!-- <li class="search-box">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <input type="text" placeholder="Search...">
                 </li> -->
 
                 <div class="menu-links">
                     <li class="nav-link1">
-                        <a href="index.php">
+                        <a href="index2.php">
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-link1">
-                        <a href="index.php?page=contacts">
+                        <a href="index2.php?page=contacts">
                             <i class="fa-solid fa-address-card icon"></i>
                             <span class="text nav-text">Kontak</span>
                         </a>
                     </li>
 
                     <li class="nav-link1">
-                        <a href="index.php?page=pesan">
+                        <a href="index2.php?page=pesan">
                             <i class="fa-solid fa-envelope-open-text icon"></i>
                             <span class="text nav-text">Pesan</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link1">
-                        <a href="index.php?page=users">
-                            <i class="fa-solid fa-user icon"></i>
-                            <span class="text nav-text">Pengguna</span>
                         </a>
                     </li>
 
