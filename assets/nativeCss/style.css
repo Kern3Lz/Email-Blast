@@ -420,6 +420,17 @@ table td {
   text-align: left;
 }
 
-.pemisah {
-  margin-bottom: 50px;
+table thead tr:first-child {
+  font-weight: bolder;
+}
+
+.pesan {
+  overflow-y: scroll;
+  height: 200px;
+  display: block;
+  margin: 0;
+}
+
+.pesan p {
+  width: 400px;
 }

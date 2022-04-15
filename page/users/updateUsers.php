@@ -1,11 +1,11 @@
 <?php 
     // make update php
     $userID = htmlspecialchars($_POST['userID']);
-    $name = htmlspecialchars($_POST['name']);
+    $name = htmlspecialchars($_POST['nameU']);
     $email = htmlspecialchars($_POST['email']);
     $level = htmlspecialchars($_POST['level']);
 
-    $sql = "UPDATE users SET name = '$name', email = '$email', level = '$level' WHERE users.userID = '$userID'";
+    $sql = "UPDATE users SET nameU = '$name', email = '$email', level = '$level' WHERE users.userID = '$userID'";
 
     $mysqli->query($sql);
 

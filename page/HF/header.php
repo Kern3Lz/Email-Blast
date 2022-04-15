@@ -59,7 +59,8 @@
                 </li>
 
                 <div class="pemisah">
-                    <br><br>
+                    <!-- untuk memisahkan profil dan menu beranda -->
+                    <br>
                 </div>
 
                 <!-- <li class="search-box">

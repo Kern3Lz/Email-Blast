@@ -11,27 +11,32 @@
     
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../assets/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 
 <body>
     
-        <div class="text">Data User</div>
-        <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+  <div class="text">Dashboard Sidebar</div>
+    
+    <form class="" method="post">
+      <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+      <input class="form-control w-25 me-1 d-inline float-right" width="30" type="search" autofocus placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
+      <!-- <button class="btn btn-outline-success" name="cari" id="tombol-cari" type="submit">Search</button> -->
+    </form>   
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Tambah User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button>
+          <h5 class="modal-title" id="myModalLabel">Tambah User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="index.php?page=tambahUsers" method="post">
               <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
+                  <label for="exampleInputName1" class="form-label">Nama Lengkap</label>
+                  <input type="text" class="form-control" id="exampleInputName1" name="nameU" required>
               </div>
     
               <div class="mb-3">
@@ -41,10 +46,14 @@
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Level</label>
                   <!-- make select 2 option php enum -->
-                  <select name="level" class="form-control">
+                  <select name="level" class="form-control" id="exampleInputEnum1">
                       <option value="SuperAdmin">Super Admin</option>
                       <option value="Admin">Admin</option>
                   </select>
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
               </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Tambah</button>
@@ -55,6 +64,7 @@
     </div>
   </div>
 
+  <div id="container1">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -76,7 +86,7 @@
         ?>
         <tr>
             <td><?php echo $no; ?></td>
-            <td><?php echo $c['name']; ?></td>
+            <td><?php echo $c['nameU']; ?></td>
             <td><?php echo $c['email']; ?></td>
             <td><?php echo $c['level']?></td>
             <td>
@@ -92,6 +102,8 @@
         <tbody>
         </tbody>
       </table>
-
+  </div>
+  
+  <script src="assets/js/scriptUsers.js"></script>
 </body>
 </html>

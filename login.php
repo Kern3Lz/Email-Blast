@@ -24,11 +24,11 @@
         
 
             // cek jika user login sebagai SuperAdmin
-            if($row_akun['level']=="Super Admin"){
+            if($row_akun['level']=="SuperAdmin"){
         
                 // buat session login dan email
                 $_SESSION ['email']=$row_akun['email'];
-                $_SESSION ['nama']=$row_akun['name'];
+                $_SESSION ['nama']=$row_akun['nameU'];
                 $_SESSION['level'] = "Super Admin";
                 // alihkan ke halaman dashboard SuperAdmin
                 header("location:index.php");
@@ -37,15 +37,15 @@
             }else if($row_akun['level']=="Admin"){
                 // buat session login dan email
                 $_SESSION ['email']=$row_akun['email'];
-                $_SESSION ['nama']=$row_akun['name'];
+                $_SESSION ['nama']=$row_akun['nameU'];
                 $_SESSION['level'] = "Admin";
                 // alihkan ke halaman dashboard Admin
                 header("location:index2.php");
-            }else {
+            }
+        }else {
                 // alihkan ke halaman login kembali
                 header("location:login.php?gagal");
             } 
-        }
      }
 ?>
 <!DOCTYPE html>
@@ -103,14 +103,14 @@
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3">Email address</label>
                     <input type="email" id="form3Example3" class="form-control form-control-lg"
-                    placeholder="Enter a valid email address" name="email" autocomplete="off" autofocus/>
+                    placeholder="Enter a valid email address" name="email" autocomplete="off" autofocus required/>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-3">
                     <label class="form-label" for="form3Example4">Password</label>
                     <input type="password" id="form3Example4" class="form-control form-control-lg"
-                    placeholder="Enter password" name="pass"/>
+                    placeholder="Enter password" name="pass" required/>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">

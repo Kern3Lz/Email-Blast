@@ -19,9 +19,15 @@
 
 <body>
     
-        <div class="text">Dashboard Sidebar</div>
-        <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+  <div class="text">Dashboard Sidebar</div>
   
+  <form class="" method="post">
+    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+    <input class="form-control w-25 me-1 d-inline float-right" width="30" type="search" autofocus placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
+    <!-- <button class="btn btn-outline-success" name="cari" id="tombol-cari" type="submit">Search</button> -->
+  </form>   
+
+       
 
   <!-- Modal Tambah Kontak-->
   <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -35,7 +41,7 @@
           <form action="index.php?page=tambahKontak" method="post">
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="nameC" required>
               </div>
     
               <div class="mb-3">
@@ -51,41 +57,43 @@
     </div>
   </div>
 
-      <table class="table table-striped">
-        <thead>
-          <tr">
-            <th scope="col">No</th>
-            <th scope="col">Nama Lengkap</th>
-            <th scope="col">Email</th>
-            <th scope="col">Aksi</th>
-          </tr>
-        </thead>
-        <br><br>
-        <tbody>
-        <?php 
-
-            $no = 0;
-            $show = $mysqli->query("SELECT * FROM contacts");
-            while ($c = mysqli_fetch_array($show)) {
-            $no++;
-        ?>
-        <tr>
-            <td><?php echo $no; ?></td>
-            <td><?php echo $c['name']; ?></td>
-            <td><?php echo $c['email']; ?></td>
-            <td>
-                <a href="index.php?page=ubahKontak&no=<?php echo $c['contactID'];?>">
-                    <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
-                </a>
-                <a href="index.php?page=hapusKontak&no=<?php echo $c['contactID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
-                    <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button>
-                </a>
-            </td>
+  <div id="container1">
+    <table class="table table-striped">
+      <thead>
+        <tr">
+          <th scope="col">No</th>
+          <th scope="col">Nama Lengkap</th>
+          <th scope="col">Email</th>
+          <th scope="col">Aksi</th>
         </tr>
-            <?php } ?>
-        
-        </tbody>
-      </table>
+      </thead>
+      <br><br>
+      <tbody>
+      <?php 
+
+          $no = 0;
+          $show = $mysqli->query("SELECT * FROM contacts");
+          while ($c = mysqli_fetch_array($show)) {
+          $no++;
+      ?>
+      <tr>
+          <td><?php echo $no; ?></td>
+          <td><?php echo $c['nameC']; ?></td>
+          <td><?php echo $c['email']; ?></td>
+          <td>
+              <a href="index.php?page=ubahKontak&no=<?php echo $c['contactID'];?>">
+                  <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
+              </a>
+              <a href="index.php?page=hapusKontak&no=<?php echo $c['contactID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
+                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button>
+              </a>
+          </td>
+      </tr>
+          <?php } ?>
+      
+      </tbody>
+    </table>
+  </div>
 
       <script>
         var myModal = document.getElementById('myModal')
@@ -95,6 +103,7 @@
         myInput.focus()
 })
       </script>
+      <script src="assets/js/scriptContacts.js"></script>
       
 </body>
 </html>

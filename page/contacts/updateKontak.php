@@ -1,9 +1,9 @@
 <?php 
     $contactID = htmlspecialchars($_POST['contactID']);
-    $name = htmlspecialchars($_POST['name']);
+    $name = htmlspecialchars($_POST['nameC']);
     $email = htmlspecialchars($_POST['email']);
 
-    $sql = "UPDATE contacts SET name = '$name', email = '$email' WHERE contactID = '$contactID'";
+    $sql = "UPDATE contacts SET nameC = '$name', email = '$email' WHERE contactID = '$contactID'";
 
     $mysqli->query($sql);
 

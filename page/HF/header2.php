@@ -55,13 +55,13 @@
 
                 <li class="nav-link1">
                     <i class="fa-solid fa-circle-user icon"></i>
-                    <span class="text nav-text"><?php echo $id_nama;?> - <?php echo $id_status?></span>
+                    <span class="text nav-text"><?php echo $id_nama;?> <br> <?php echo $id_status?></span>
                 </li>
 
-                <!-- <li class="search-box">
-                    <i class="fa-solid fa-magnifying-glass icon"></i>
-                    <input type="text" placeholder="Search...">
-                </li> -->
+                <div class="pemisah">
+                    <!-- untuk memisahkan profil dan menu beranda -->
+                    <br>
+                </div>
 
                 <div class="menu-links">
                     <li class="nav-link1">

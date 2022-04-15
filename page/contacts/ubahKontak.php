@@ -9,7 +9,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="<?php echo $c['name'];?>" placeholder="Ketik Nama..">
+        <input type="text" class="form-control" id="exampleInputEmail1" name="nameC" value="<?php echo $c['nameC'];?>" placeholder="Ketik Nama..">
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email</label>

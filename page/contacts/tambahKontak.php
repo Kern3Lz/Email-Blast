@@ -1,8 +1,8 @@
 <?php 
-    $name = htmlspecialchars($_POST['name']);
+    $name = htmlspecialchars($_POST['nameC']);
     $email = htmlspecialchars($_POST['email']);
 
-    $sql = "INSERT INTO contacts (name, email) VALUES ('$name', '$email')";
+    $sql = "INSERT INTO contacts (nameC, email) VALUES ('$name', '$email')";
 
     $mysqli->query($sql);
     

@@ -1,9 +1,10 @@
 <?php 
-    $name = htmlspecialchars($_POST['name']);
+    $name = htmlspecialchars($_POST['nameU']);
     $email = htmlspecialchars($_POST['email']);
     $level = htmlspecialchars($_POST['level']);
+    $password = htmlspecialchars(md5($_POST['password']));
 
-    $sql = "INSERT INTO users (name, email, level) VALUES ('$name', '$email', $level)";
+    $sql = "INSERT INTO users (nameU, email, level, password) VALUES ('$name', '$email', '$level', '$password')";
 
     $mysqli->query($sql);
     

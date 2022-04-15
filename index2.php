@@ -14,6 +14,7 @@
 ?>
 
 <?php 
+    // include ini untuk bagian navbar agar website dinamis
     include 'page/HF/header2.php';
 ?>
 
@@ -43,6 +44,7 @@
 
 
 <?php 
+    // include ini untuk bagian footer agar website dinamis
     include 'page/HF/footer.php';
 ?>
 

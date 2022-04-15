@@ -1,6 +1,139 @@
 
+<?php 
+  include 'backend/koneksi.php';
+  
+  
+?>
 
-<div class="text">Email</div>
+    <style>
+.pesan {
+  overflow-y: scroll;
+  height:100px;
+  display: block;
+  margin: 0;
+}
+
+.pesan p {
+  width: 400px;
+  
+}
+      </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="assets/nativeCss/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/font-awesome/css/all.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/all.min.css">
+
+<body>
+    
+  <div class="text">Dashboard Sidebar</div>
+  
+  <form class="" method="post">
+    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+    <input class="form-control w-25 me-1 d-inline float-right" width="30" type="search" autofocus placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
+    <!-- <button class="btn btn-outline-success" name="cari" id="tombol-cari" type="submit">Search</button> -->
+  </form>   
+
+       
+
+  <!-- Modal Kirim Pesan-->
+  <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Kirim Pesan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="index.php?page=kirimPesan" method="post">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Dari</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="from" required></input>
+              </div>
+
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email Tujuan</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="to" required>
+              </div>
+    
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Subjek</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="subject" required>
+              </div>
+
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Pesan</label>
+                  <textarea class="form-control" id="exampleInputEmail1" name="message" required></textarea>
+              </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Kirim</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="container1">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Pengirim</th>
+          <th scope="col">Tujuan</th>
+          <th scope="col">Pesan</th>
+          <th scope="col">Tanggal</th>
+          <th scope="col">Status</th>
+          <th scope="col">Aksi</th>
+        </tr>
+      </thead>
+      <br><br>
+      <tbody>
+      <?php 
+
+          $no = 0;
+          $show = $mysqli->query("SELECT users.nameU, contacts.nameC, messages.messageID, messages.message, messages.createdAt, messages.status 
+          FROM users, contacts, messages
+          WHERE messages.userID = users.userID
+          AND messages.contactID = contacts.contactID");
+          while ($c = mysqli_fetch_array($show)) {
+          $no++;
+      ?>
+      <tr>
+          <td><?php echo $no; ?></td>
+          <td><?php echo $c['nameU']; ?></td>
+          <td><?php echo $c['nameC']; ?></td>
+          <td class="pesan"><div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"><p><?php echo $c['message']; ?></p></div></td>
+          <td><?php echo $c['createdAt']; ?></td>
+          <td><?php echo $c['status']?></td>
+          <td>
+              <a href="index.php?page=ubahPesan&no=<?php echo $c['messageID'];?>">
+                  <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
+              </a>
+              <a href="index.php?page=hapusPesan&no=<?php echo $c['messageID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
+                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button>
+              </a>
+          </td>
+      </tr>
+          <?php } ?>
+      
+      </tbody>
+    </table>
+  </div>
+
+      <script src="assets/js/scriptPesan.js"></script>
+      
+</body>
+</html>
+<!-- <div class="text">Email</div>
         <a href="index.php?page=kirimPesan"><button type="button" class="btn tombol btn-success"><i class="fa-solid fa-file-circle-plus"></i>&nbsp;Kirim Email</button></a>
 
       <table class="table table-striped">
@@ -49,9 +182,6 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
-
-
-</body>
-</html>
+      

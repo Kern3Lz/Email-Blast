@@ -27,7 +27,7 @@
                 <div class="card text-light bg-danger mb-3" style="width: 23rem;">
                     <div class="layout">
                         <div class="card-1">
-                            <h2>13</h2>
+                            <h2 class="counter" data-target="13"></h2>
                             <p>Kontak</p>
                         </div>
                         <div class="card-2">
@@ -46,7 +46,7 @@
                 <div class="card text-light bg-warning mb-3" style="width: 23rem;">
                     <div class="layout">
                         <div class="card-1">
-                            <h2>3</h2>
+                            <h2 class="counter" data-target="3"></h2>
                             <p>Pengguna</p>
                         </div>
                         <div class="card-2">
@@ -65,7 +65,7 @@
                 <div class="card text-light bg-success mb-3" style="width: 23rem;">
                     <div class="layout">
                         <div class="card-1">
-                            <h2>100</h2>
+                            <h2 class="counter" data-target="100"></h2>
                             <p>Email Terkirim</p>
                         </div>
                         <div class="card-2">
@@ -80,3 +80,26 @@
                   </div>
             </div>
           </div>
+
+            <!-- <div class="counter-container">
+              <i class="fa-solid fa-address-card ikan"></i>
+              <div class="counter" data-target="3400"></div>
+              <span> kontak </span>
+            </div>
+
+            <div class="counter-container">
+              <i class="fa-solid fa-user icon ikan"></i>
+              <div class="counter" data-target="8756"></div>
+              <span> pengguna </span>
+            </div>
+
+            <div class="counter-container">
+              <i class="fa-solid fa-paper-plane icon ikan"></i>
+              <div class="counter" data-target="28756"></div>
+              <span> Email Terkirim </span>
+            </div> -->
+
+<script src="assets/js/scriptHome.js"></script>
+
+
+
