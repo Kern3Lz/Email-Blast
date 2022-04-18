@@ -81,7 +81,7 @@
             </div>
           </div>
 
-            <!-- <div class="counter-container">
+            <div class="counter-container">
               <i class="fa-solid fa-address-card ikan"></i>
               <div class="counter" data-target="3400"></div>
               <span> kontak </span>
@@ -97,7 +97,7 @@
               <i class="fa-solid fa-paper-plane icon ikan"></i>
               <div class="counter" data-target="28756"></div>
               <span> Email Terkirim </span>
-            </div> -->
+            </div>
 
 <script src="assets/js/scriptHome.js"></script>
 

@@ -426,11 +426,24 @@ table thead tr:first-child {
 
 .pesan {
   overflow-y: scroll;
-  height: 200px;
+  height: 80px;
   display: block;
   margin: 0;
 }
 
+.pesan::-webkit-scrollbar {
+  width: 4px;
+  background-color: #dedede;
+}
+.pesan::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.pesan::-webkit-scrollbar-thumb {
+  background: rgb(79, 79, 79);
+  border-radius: 10px;
+}
+
 .pesan p {
-  width: 400px;
+  width: 380px;
 }

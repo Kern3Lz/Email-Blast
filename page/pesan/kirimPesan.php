@@ -1,13 +1,67 @@
 <?php 
+  include 'backend/koneksi.php';
 
-$headers = 'From: suken836@gmail.com' . "\r\n" .
-            'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset-utf-8';
+  $eselect = $mysqli->query("SELECT email FROM contacts");
 
-$result = mail("suken836@gmail.com", "Hello World", "This is Email Body", $headers);
-var_dump($result);
+  ini_set("SMTP","localhost");
+  ini_set("smtp_port","25");
+  ini_set("sendmail_from","suken836@gmail.com");
+  ini_set("sendmail_path", "C:\xampp\sendmail\sendmail.exe -t");
 
-//   include 'backend/koneksi.php';
+while ($row_data = mysqli_fetch_assoc($eselect)) {
+  // $to = $_POST['to'];
+  $to = $row_data['email'];
+  $subject = $_POST['subject'];
+  $message = $_POST['message'];
+  $headers = 'From: Zundera <suken836@gmail.com>' . "\r\n" .
+             'Reply-To: suken836@gmail.com' . "\r\n" .
+             'MIME-Version: 1.0' . "\r\n" .
+             'Content-type: text/html; charset-utf-8';
+
+  $result = mail("$to", "$subject", "$message", $headers);
+}
+  if ($result) {
+    echo "<script>alert('Pesan Berhasil Dikirim');</script>";
+    echo "<script>document.location='index.php?page=pesan';</script>";
+  } else {
+    echo "<script>alert('Pesan Gagal Dikirim');</script>";
+    echo "<script>document.location='index.php?page=pesan';</script>";
+  }
+  var_dump($result);
+
+// make send mail with php mail with method get by row id
+
+// $query = $mysqli->query("SELECT * FROM messages WHERE messageID = '$_GET[no]'");
+// $row = mysqli_fetch_array($query);
+
+// $to = $row['email'];
+// $subject = $row['subject'];
+// $message = $row['message'];
+// $headers = 'From:
+// $result = mail("$to", "$subject", "$message", $headers);
+
+
+// $headers = 'From: suken836@gmail.com' . "\r\n" .
+//             'MIME-Version: 1.0' . "\r\n" .
+//             'Content-type: text/html; charset-utf-8';
+
+// $result = mail("suken836@gmail.com", "Hello World", "This is Email Body", $headers);
+// var_dump($result);
+
+// $headers = 'From: suken836@gmail.com' . "\r\n" .
+//             'MIME-Version: 1.0' . "\r\n" .
+//             'Content-type: text/html; charset-utf-8';
+
+// $result = mail("fauzansuken@gmail.com", "Hello World", "This is Email Body", $headers);
+
+// if ($result) {
+//     echo "<script>alert('Pesan Berhasil Dikirim');</script>";
+//     echo "<script>document.location='index.php?page=pesan';</script>";
+// } else {
+//     echo "<script>alert('Pesan Gagal Dikirim');</script>";
+//     echo "<script>document.location='index.php?page=pesan';</script>";
+// }
+// var_dump($result);
 
 //   $sql = $mysqli->query("SELECT users.nameU, contacts.nameC, messages.messageID, messages.message, messages.createdAt 
 //                           FROM users, contacts, messages

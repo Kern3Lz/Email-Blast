@@ -2,13 +2,15 @@
 <?php 
   include 'backend/koneksi.php';
   
+  $mShow = $mysqli->query("SELECT * FROM contacts");
+  $eShow = mysqli_fetch_array($mShow);
   
 ?>
 
-    <style>
+    <!-- <style>
 .pesan {
   overflow-y: scroll;
-  height:100px;
+  height: 100px;
   display: block;
   margin: 0;
 }
@@ -16,7 +18,7 @@
 .pesan p {
   width: 400px;
   
-}
+} -->
       </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +38,7 @@
   <div class="text">Dashboard Sidebar</div>
   
   <form class="" method="post">
-    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Tambah</button>
+    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Kirim Pesan</button>
     <input class="form-control w-25 me-1 d-inline float-right" width="30" type="search" autofocus placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
     <!-- <button class="btn btn-outline-success" name="cari" id="tombol-cari" type="submit">Search</button> -->
   </form>   
@@ -52,15 +54,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="index.php?page=kirimPesan" method="post">
-              <div class="mb-3">
+          <form action="index.php?page=kirimPesan" action="index.php?page=tambahPesan" method="post">
+              <!-- <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Dari</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" name="from" required></input>
-              </div>
+              </div> -->
 
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email Tujuan</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="to" required>
+                  <!-- make foreach input with alll value email visible -->
+                  <?php 
+                    $mShow = $mysqli->query("SELECT * FROM contacts");
+                    while ($eShow = mysqli_fetch_array($mShow)) {
+                  ?>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="to" 
+                  value="<?php echo $eShow['email']; ?>" required></input>
+                  <?php } ?>
+                  
+                  <!-- <input type="email" class="form-control" id="exampleInputEmail1" required value="<?php //echo $eShow['email']; ?>"> -->
               </div>
     
               <div class="mb-3">
@@ -88,7 +99,8 @@
         <tr>
           <th scope="col">No</th>
           <th scope="col">Pengirim</th>
-          <th scope="col">Tujuan</th>
+          <th scope="col">Penerima</th>
+          <th scope="col">Email Penerima</th>
           <th scope="col">Pesan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Status</th>
@@ -100,10 +112,11 @@
       <?php 
 
           $no = 0;
-          $show = $mysqli->query("SELECT users.nameU, contacts.nameC, messages.messageID, messages.message, messages.createdAt, messages.status 
+          $show = $mysqli->query("SELECT users.nameU, contacts.email, contacts.nameC, messages.messageID, messages.message, messages.createdAt, messages.status 
           FROM users, contacts, messages
           WHERE messages.userID = users.userID
-          AND messages.contactID = contacts.contactID");
+          AND messages.contactID = contacts.contactID
+          ORDER BY messages.createdAt ASC");
           while ($c = mysqli_fetch_array($show)) {
           $no++;
       ?>
@@ -111,16 +124,28 @@
           <td><?php echo $no; ?></td>
           <td><?php echo $c['nameU']; ?></td>
           <td><?php echo $c['nameC']; ?></td>
-          <td class="pesan"><div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"><p><?php echo $c['message']; ?></p></div></td>
+          <td><?php echo $c['email']; ?></td>
+          <!-- <td class="pesan"><div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"><p><?php //echo $c['message']; ?></p></div></td> -->
+          <td class="pesan"><p><?php echo $c['message']; ?></p></td>
           <td><?php echo $c['createdAt']; ?></td>
           <td><?php echo $c['status']?></td>
           <td>
-              <a href="index.php?page=ubahPesan&no=<?php echo $c['messageID'];?>">
-                  <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i>&nbsp;Ubah</button>
+              <!-- make if else for status draft and success  -->
+              <?php if ($c['status'] == 'draft') { ?>
+                <a href="index.php?page=ubahPesan&no=<?php echo $c['messageID'];?>">
+                  <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i></button>
               </a>
               <a href="index.php?page=hapusPesan&no=<?php echo $c['messageID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
-                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button>
+                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
               </a>
+              <a href="index.php?page=kirimPesan&no=<?php echo $c['messageID'];?>">
+                  <button class="btn btn-success btn-sm" role="button" role="button"><i class="fa-solid fa-paper-plane"></i></button>
+              </a>
+              <?php } ?>
+              <!-- make if else for status success -->
+              <?php if ($c['status'] == 'success') { ?>
+                  <button class="btn btn-success btn-sm" style="cursor: default;">Terkirim</button>
+              <?php } ?>
           </td>
       </tr>
           <?php } ?>
