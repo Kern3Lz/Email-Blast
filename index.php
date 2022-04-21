@@ -10,6 +10,7 @@
   //  var global user session
   $id_log = $_SESSION['email'];
   $id_nama = $_SESSION['nama'];
+  $id_user = $_SESSION['user'];
   $id_status = $_SESSION['level'];
 ?>
 

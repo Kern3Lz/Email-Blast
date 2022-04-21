@@ -81,23 +81,6 @@
             </div>
           </div>
 
-            <div class="counter-container">
-              <i class="fa-solid fa-address-card ikan"></i>
-              <div class="counter" data-target="3400"></div>
-              <span> kontak </span>
-            </div>
-
-            <div class="counter-container">
-              <i class="fa-solid fa-user icon ikan"></i>
-              <div class="counter" data-target="8756"></div>
-              <span> pengguna </span>
-            </div>
-
-            <div class="counter-container">
-              <i class="fa-solid fa-paper-plane icon ikan"></i>
-              <div class="counter" data-target="28756"></div>
-              <span> Email Terkirim </span>
-            </div>
 
 <script src="assets/js/scriptHome.js"></script>
 

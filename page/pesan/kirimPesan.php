@@ -1,6 +1,6 @@
 <?php 
   include 'backend/koneksi.php';
-
+  
   $eselect = $mysqli->query("SELECT email FROM contacts");
 
   ini_set("SMTP","localhost");
@@ -21,8 +21,18 @@ while ($row_data = mysqli_fetch_assoc($eselect)) {
   $result = mail("$to", "$subject", "$message", $headers);
 }
   if ($result) {
+    $createdAt = date('Y-m-d H:i:s');
+    
+    // $mysqli->query("INSERT INTO messages (userID, contactID, subject, message, createdAt, status) VALUES ('', '$_POST[contactID]', '$_POST[subject]', '$_POST[message]', '$createdAt, 'success')");
+    // "SELECT users.nameU, contacts.email, contacts.nameC, messages.messageID, messages.subject, messages.message, messages.createdAt, messages.status 
+    //       FROM users, contacts, messages
+    //       WHERE messages.userID = users.userID
+    //       AND messages.contactID = contacts.contactID
+    //       ORDER BY messages.createdAt ASC"
+
     echo "<script>alert('Pesan Berhasil Dikirim');</script>";
     echo "<script>document.location='index.php?page=pesan';</script>";
+    
   } else {
     echo "<script>alert('Pesan Gagal Dikirim');</script>";
     echo "<script>document.location='index.php?page=pesan';</script>";

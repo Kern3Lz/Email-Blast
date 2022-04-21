@@ -38,19 +38,20 @@
   <div class="text">Dashboard Sidebar</div>
   
   <form class="" method="post">
-    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-plus"></i>&nbsp;Kirim Pesan</button>
+    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#modalKirimPesanBanyak"><i class="fa-solid fa-plus"></i>&nbsp;Kirim Banyak Pesan</button>
+
+    <button type="button" class="btn tombol btn-success" data-bs-toggle="modal" data-bs-target="#modalKirimPesanIndividu"><i class="fa-solid fa-plus"></i>&nbsp;Kirim Pesan Individu</button>
+
     <input class="form-control w-25 me-1 d-inline float-right" width="30" type="search" autofocus placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
     <!-- <button class="btn btn-outline-success" name="cari" id="tombol-cari" type="submit">Search</button> -->
   </form>   
 
-       
-
-  <!-- Modal Kirim Pesan-->
-  <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+   <!-- Modal Kirim Pesan Banyak-->
+   <div class="modal fade" id="modalKirimPesanBanyak" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalKirimPesanBanyakLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">Kirim Pesan</h5>
+          <h5 class="modal-title" id="modalKirimPesanBanyakLabel">Kirim Pesan</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -59,17 +60,22 @@
                   <label for="exampleInputEmail1" class="form-label">Dari</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" name="from" required></input>
               </div> -->
+              
 
               <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email Tujuan</label>
+                  <label for="exampleInputEmail1" class="form-label">List Email Tujuan</label>
                   <!-- make foreach input with alll value email visible -->
+                  <select class="form-control" name="email" id="">
+                  <option disabled selected> Lihat List Email </option>
                   <?php 
                     $mShow = $mysqli->query("SELECT * FROM contacts");
                     while ($eShow = mysqli_fetch_array($mShow)) {
                   ?>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="to" 
-                  value="<?php echo $eShow['email']; ?>" required></input>
-                  <?php } ?>
+                    <!-- <input type="email" class="form-control" id="exampleInputEmail1" name="to" 
+                    value=""></input> -->
+                    <option value="<?= $eShow['email'] ?>"><?= $eShow['email'] ?></option>
+                    <?php } ?>
+                  </select>
                   
                   <!-- <input type="email" class="form-control" id="exampleInputEmail1" required value="<?php //echo $eShow['email']; ?>"> -->
               </div>
@@ -86,6 +92,83 @@
 
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success">Kirim</button>
+                  <a href="index.php?page=draftPesan">
+                    <button type="button" class="btn btn-primary">Draft</button>
+                  </a>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+       
+
+  <!-- Modal Kirim Pesan-->
+  <div class="modal fade" id="modalKirimPesanIndividu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalKirimPesanIndividuLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalKirimPesanIndividuLabel">Kirim Pesan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="index.php?page=kirimPesanPribadi" method="post">
+              <!-- <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Dari</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="from" required></input>
+              </div> -->
+              <div class="mb-3">
+                <input type="hidden" class="form-control" id="exampleInputEmail1" name="userID" value="<?= $id_user; ?>">
+              </div>
+              
+              
+
+              <!-- <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Pilih Email</label>
+                  <select class="form-control" name="contactID" id="">
+                  <option disabled selected> Lihat List Email </option>
+                  <?php 
+                    //$mShow = $mysqli->query("SELECT * FROM contacts");
+                    //while ($eShow = mysqli_fetch_array($mShow)) {
+                  ?>
+                    <option value="<?php //$eShow//['contactID'] ?>"><?php //$eShow['email'] ?></option>
+                    <?php //} ?>
+                  </select>
+              </div> -->
+
+              <div class="mb-3">
+              <label for="" class="form-label">Email Tujuan</label>
+              <select class="form-control" name="email" id="email">
+                <option disabled selected> Pilih </option>
+                <?php
+                // make variable for list explode
+                
+                $showcontact = $mysqli->query("SELECT * FROM contacts");
+                while ($dataC = mysqli_fetch_array($showcontact)) {
+                ?>
+                  <option value="<?= $dataC['contactID'].$dataC['email']?>"><?= $dataC['email']?></option>
+                <?php
+                }
+                ?>
+              </select>
+
+            </div>
+
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Subjek</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="subject" required>
+              </div>
+
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Pesan</label>
+                  <textarea class="form-control" id="exampleInputEmail1" name="message" required></textarea>
+              </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Kirim</button>
+                  <a href="index.php?page=draftPesan">
+                    <button type="button" class="btn btn-primary">Draft</button>
+                  </a>
                 </div>
             </form>
         </div>
@@ -101,7 +184,7 @@
           <th scope="col">Pengirim</th>
           <th scope="col">Penerima</th>
           <th scope="col">Email Penerima</th>
-          <th scope="col">Pesan</th>
+          <th scope="col">Subject & Pesan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Status</th>
           <th scope="col">Aksi</th>
@@ -112,7 +195,7 @@
       <?php 
 
           $no = 0;
-          $show = $mysqli->query("SELECT users.nameU, contacts.email, contacts.nameC, messages.messageID, messages.message, messages.createdAt, messages.status 
+          $show = $mysqli->query("SELECT users.nameU, contacts.email, contacts.nameC, messages.messageID, messages.subject, messages.message, messages.createdAt, messages.status 
           FROM users, contacts, messages
           WHERE messages.userID = users.userID
           AND messages.contactID = contacts.contactID
@@ -126,7 +209,7 @@
           <td><?php echo $c['nameC']; ?></td>
           <td><?php echo $c['email']; ?></td>
           <!-- <td class="pesan"><div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"><p><?php //echo $c['message']; ?></p></div></td> -->
-          <td class="pesan"><p><?php echo $c['message']; ?></p></td>
+          <td class="pesan"><b><?php echo $c['subject'];?></b><p><?php echo $c['message']; ?></p></td>
           <td><?php echo $c['createdAt']; ?></td>
           <td><?php echo $c['status']?></td>
           <td>
@@ -138,13 +221,16 @@
               <a href="index.php?page=hapusPesan&no=<?php echo $c['messageID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
                   <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
               </a>
-              <a href="index.php?page=kirimPesan&no=<?php echo $c['messageID'];?>">
+              <a href="index.php?page=kirimPesanBaris&no=<?php echo $c['messageID'];?>">
                   <button class="btn btn-success btn-sm" role="button" role="button"><i class="fa-solid fa-paper-plane"></i></button>
               </a>
               <?php } ?>
               <!-- make if else for status success -->
               <?php if ($c['status'] == 'success') { ?>
                   <button class="btn btn-success btn-sm" style="cursor: default;">Terkirim</button>
+                  <a href="index.php?page=hapusPesan&no=<?php echo $c['messageID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
+                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+              </a>
               <?php } ?>
           </td>
       </tr>

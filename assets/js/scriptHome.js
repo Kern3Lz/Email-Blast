@@ -20,8 +20,8 @@
 // });
 
 const counters = document.querySelectorAll(".counter");
-const speed = 200;
-const decSpeed = 30;
+const speed = 50;
+const decSpeed = 10;
 
 counters.forEach((counter) => {
   const updateCount = () => {

@@ -8,7 +8,7 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $email = htmlspecialchars($_POST['email']);
             $pass = htmlspecialchars($_POST['pass']);
-            $sql_login = $mysqli->query("SELECT * FROM users WHERE email='$email' AND password='$pass'");
+            $sql_login = $mysqli->query("SELECT * FROM users WHERE userID='$email' OR email='$email' OR nameU='$email' AND password='$pass'");
     
            if(mysqli_num_rows($sql_login)>0) {
                $_SESSION ["login"] = true;
@@ -27,25 +27,27 @@
             if($row_akun['level']=="SuperAdmin"){
         
                 // buat session login dan email
+                $_SESSION ['user']=$row_akun['userID'];
                 $_SESSION ['email']=$row_akun['email'];
                 $_SESSION ['nama']=$row_akun['nameU'];
                 $_SESSION['level'] = "Super Admin";
                 // alihkan ke halaman dashboard SuperAdmin
                 header("location:index.php");
-        
             // cek jika user login sebagai Admin
             }else if($row_akun['level']=="Admin"){
                 // buat session login dan email
+                $_SESSION ['user']=$row_akun['userID'];
                 $_SESSION ['email']=$row_akun['email'];
                 $_SESSION ['nama']=$row_akun['nameU'];
-                $_SESSION['level'] = "Admin";
+                $_SESSION ['level'] = "Admin";
                 // alihkan ke halaman dashboard Admin
                 header("location:index2.php");
-            }
+            } 
         }else {
                 // alihkan ke halaman login kembali
                 header("location:login.php?gagal");
             } 
+            
      }
 ?>
 <!DOCTYPE html>
@@ -102,7 +104,7 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3">Email address</label>
-                    <input type="email" id="form3Example3" class="form-control form-control-lg"
+                    <input type="text" id="form3Example3" class="form-control form-control-lg"
                     placeholder="Enter a valid email address" name="email" autocomplete="off" autofocus required/>
                 </div>
 

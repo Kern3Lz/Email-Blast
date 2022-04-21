@@ -51,6 +51,14 @@
     else if ($_GET['page']=="kirimPesan") {
         include 'page/pesan/kirimPesan.php';
     }
+    
+    else if ($_GET['page']=="kirimPesanBaris") {
+        include 'page/pesan/kirimPesanBaris.php';
+    }
+
+    else if ($_GET['page']=="kirimPesanPribadi") {
+        include 'page/pesan/kirimPesanPribadi.php';
+    }
 
     else if ($_GET['page']=="hapusPesan") {
         include 'page/pesan/hapusPesan.php';
@@ -63,6 +71,13 @@
     else if ($_GET['page']=="updatePesan") {
         include 'page/pesan/updatePesan.php';
     }
+
+    else if ($_GET['page']=="draftPesan") {
+        include 'page/pesan/draftPesan.php';
+    }
+
+
+
 
 
 
