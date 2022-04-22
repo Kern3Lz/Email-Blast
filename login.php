@@ -8,7 +8,12 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $email = htmlspecialchars($_POST['email']);
             $pass = htmlspecialchars($_POST['pass']);
-            $sql_login = $mysqli->query("SELECT * FROM users WHERE userID='$email' OR email='$email' OR nameU='$email' AND password='$pass'");
+            $sql_login = $mysqli->query("SELECT * FROM users 
+                                         WHERE BINARY userID='$email' 
+                                         OR BINARY email='$email' 
+                                         OR BINARY nameU='$email' 
+                                         AND BINARY password='$pass'
+                                        ");
     
            if(mysqli_num_rows($sql_login)>0) {
                $_SESSION ["login"] = true;
@@ -100,6 +105,15 @@
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form action="" method="post">
+                <?php if(isset($_GET['gagal'])) {?>
+                <tr>
+                    <td>
+                        <div class="alert alert-danger" role="alert">
+                            Sorry, Username / Password doesn't match
+                        </div>
+                    </td>
+                </tr>
+                <?php }?>
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
@@ -132,16 +146,6 @@
                     <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                         class="link-danger">Register</a></p>
                 </div>
-
-                <?php if(isset($_GET['gagal'])) {?>
-                <tr>
-                    <td>
-                        <div>
-                            <p>Sorry, Username / Password doesn't match</p>
-                        </div>
-                    </td>
-                </tr>
-                <?php }?>
                 </form>
                 
             </div>

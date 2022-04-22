@@ -61,12 +61,12 @@ $mysqli->query($sql);
           <td><?php echo $c['nameU']; ?></td>
           <td><?php echo $c['nameC']; ?></td>
           <td><?php echo $c['email']; ?></td>
-          <!-- <td class="pesan"><div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0"><p><?php //echo $c['message']; ?></p></div></td> -->
           <td class="pesan"><b><?php echo $c['subject'];?></b><p><?php echo $c['message']; ?></p></td>
           <td><?php echo $c['createdAt']; ?></td>
           <td><?php echo $c['status']?></td>
           <td>
-              <!-- make if else for status draft and success  -->
+
+              <!-- jika status draft maka actionnya ada ubah, hapus dan kirim  -->
               <?php if ($c['status'] == 'draft') { ?>
                 <a href="index.php?page=ubahPesan&no=<?php echo $c['messageID'];?>">
                   <button class="btn btn-warning btn-sm" role="button" role="button"><i class="fa-solid fa-edit"></i></button>
@@ -78,9 +78,13 @@ $mysqli->query($sql);
                   <button class="btn btn-success btn-sm" role="button" role="button"><i class="fa-solid fa-paper-plane"></i></button>
               </a>
               <?php } ?>
-              <!-- make if else for status success -->
+
+              <!-- jika status success maka actionnya hanya ada status Terkirim dan juga Hapus -->
               <?php if ($c['status'] == 'success') { ?>
                   <button class="btn btn-success btn-sm" style="cursor: default;">Terkirim</button>
+                <a href="index.php?page=hapusPesan&no=<?php echo $c['messageID'];?>" onclick="return confirm('Yakin ingin menghapus data?')">
+                  <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                </a>
               <?php } ?>
           </td>
       </tr>

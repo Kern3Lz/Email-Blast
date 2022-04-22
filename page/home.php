@@ -1,4 +1,6 @@
-
+<?php 
+    include 'backend/koneksi.php';
+?>
 
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,33 +28,42 @@
               <div class="col-lg-4 col-md-6 col-sm-4">
                 <div class="card text-light bg-danger mb-3" style="width: 23rem;">
                     <div class="layout">
+                        <?php 
+                            foreach($mysqli->query('SELECT COUNT(contactID) FROM contacts') as $row) {
+                        ?>
                         <div class="card-1">
-                            <h2 class="counter" data-target="13"></h2>
+                            <h2 class="counter" data-target="<?php echo $row['COUNT(contactID)']?>"></h2>
                             <p>Kontak</p>
                         </div>
                         <div class="card-2">
                             <i class="fa-solid fa-address-card ikan"></i>
                         </div>
                     </div>
+                        <?php }?>
                     <div class="card-footer">
                         <center>
                             <a href="Contact.html">detail&nbsp;<i class="fa-solid fa-circle-right"></i></a>
                         </center>
-                      </div>
-                  </div>
-              </div>
+                        </div>
+                </div>
+            </div>
+              
 
               <div class="col-lg-4 col-md-6 col-sm-4">
                 <div class="card text-light bg-warning mb-3" style="width: 23rem;">
                     <div class="layout">
+                    <?php 
+                        foreach($mysqli->query('SELECT COUNT(userID) FROM users') as $row) {
+                    ?>
                         <div class="card-1">
-                            <h2 class="counter" data-target="3"></h2>
+                            <h2 class="counter" data-target="<?php echo $row['COUNT(userID)']?>"></h2>
                             <p>Pengguna</p>
                         </div>
                         <div class="card-2">
                             <i class="fa-solid fa-user icon ikan"></i>
                         </div>
                     </div>
+                    <?php }?>
                     <div class="card-footer">
                         <center>
                             <a href="UserManagement.html">detail&nbsp;<i class="fa-solid fa-circle-right"></i></a>
@@ -61,17 +72,23 @@
                   </div>
               </div>
 
+
               <div class="col-lg-4 col-md-12 col-sm-4">
                 <div class="card text-light bg-success mb-3" style="width: 23rem;">
                     <div class="layout">
+                    <?php 
+                        $success = 0;
+                        foreach($mysqli->query('SELECT COUNT(*) FROM messages WHERE status="success"') as $row) {
+                    ?>
                         <div class="card-1">
-                            <h2 class="counter" data-target="100"></h2>
+                            <h2 class="counter" data-target="<?php echo $row['COUNT(*)']?>"></h2>
                             <p>Email Terkirim</p>
                         </div>
                         <div class="card-2">
                             <i class="fa-solid fa-paper-plane icon ikan"></i>
                         </div>
                     </div>
+                    <?php }?>
                     <div class="card-footer">
                         <center>
                             <a href="email.html">detail&nbsp;<i class="fa-solid fa-circle-right"></i></a>
@@ -80,7 +97,6 @@
                   </div>
             </div>
           </div>
-
 
 <script src="assets/js/scriptHome.js"></script>
 
