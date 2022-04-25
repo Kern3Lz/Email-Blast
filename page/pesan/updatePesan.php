@@ -4,7 +4,7 @@
     $messageID = htmlspecialchars($_POST['messageID']);
     $contactID = htmlspecialchars($_POST['contactID']);
     $subject = htmlspecialchars($_POST['subject']);
-    $message = htmlspecialchars($_POST['message']);
+    $message = $_POST['message'];
     $status = htmlspecialchars($_POST['status']);
 
     // make update query 

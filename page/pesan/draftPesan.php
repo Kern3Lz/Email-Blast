@@ -12,9 +12,12 @@
 
     if ($mysqli->affected_rows > 0) {
         echo "<script>alert('Pesan Berhasil Dsimpan di Draft');</script>";
-        echo "<script>document.location='index.php?page=pesan';</script>";
+        // echo "<script>document.location='index.php?page=pesan';</script>";
     } else {
         echo "<script>alert('Pesan Gagal Disimpan di Draft');</script>";
-        echo "<script>document.location='index.php?page=pesan';</script>";
+        // echo "<script>document.location='index.php?page=pesan';</script>";
     }
+    var_dump($_POST);
+    var_dump($insert);
+    var_dump($mysqli->affected_rows);
 ?>

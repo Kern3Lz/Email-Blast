@@ -25,6 +25,9 @@
       <div class="mb-3">
         <button type="reset" class="btn btn-warning">Reset</button>
         <button type="submit" class="btn btn-success">Ubah</button>
+        <a href="index.php?page=users">
+            <button type="button" class="btn btn-danger">Batal</button>
+        </a>
       </div>
       
   </form>
